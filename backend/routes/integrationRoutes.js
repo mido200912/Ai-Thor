@@ -16,6 +16,7 @@ const router = express.Router();
 router.get('/meta/login', metaLogin);
 router.get('/meta/callback', metaCallback);
 router.post('/meta/data-deletion', metaDataDeletion);
+router.get('/meta/data-deletion', metaDataDeletion); // For Facebook verification
 
 // Shopify Auth
 router.get('/shopify/login', shopifyLogin);
