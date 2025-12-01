@@ -7,7 +7,7 @@ const CompanyPages = () => {
   const [loading, setLoading] = useState(true);
 
   // جلب الشركات العامة بدون apiKey
-  const apiUrl = 'http://localhost:5000/api/public/companies/public';
+  const apiUrl = 'https://ai-thor5.vercel.app/api/public/companies/public';
 
   useEffect(() => {
     async function fetchCompanies() {
