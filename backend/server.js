@@ -44,10 +44,28 @@ app.use((err, req, res, next) => {
 });
 
 // ✅ اتصال قاعدة البيانات
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.log("❌ Mongo Error:", err));
+// ✅ اتصال قاعدة البيانات (محسن لـ Serverless)
+const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("✅ MongoDB connected");
+  } catch (err) {
+    console.log("❌ Mongo Error:", err);
+  }
+};
+
+// تشغيل الاتصال عند كل طلب (لضمان العمل في بيئة Serverless)
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+// تشغيل السيرفر فقط إذا لم نكن في بيئة Vercel (للتطوير المحلي)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+}
+
+export default app;
