@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE_URL = "https://ai-thor5.vercel.app/api";
+const API_BASE_URL = "https://ai-thor-pkmr.vercel.app/api";
 
 
 
