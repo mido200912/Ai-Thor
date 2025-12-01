@@ -154,7 +154,7 @@ const IntegrationsSection = ({ company }) => {
       icon: 'fab fa-facebook',
       color: '#1877F2',
       description: 'Connect your Facebook Page to automate replies.',
-      action: () => window.location.href = `https://ai-thor5.vercel.app/api/integrations/meta/login?companyId=${company._id}`
+      action: () => window.location.href = `https://ai-thor-pkmr.vercel.app/api/integrations/meta/login?companyId=${company._id}`
     },
     {
       id: 'instagram',
@@ -162,7 +162,7 @@ const IntegrationsSection = ({ company }) => {
       icon: 'fab fa-instagram',
       color: '#E4405F',
       description: 'Link your Instagram Business account.',
-      action: () => window.location.href = `https://ai-thor5.vercel.app/api/integrations/meta/login?companyId=${company._id}`
+      action: () => window.location.href = `https://ai-thor-pkmr.vercel.app/api/integrations/meta/login?companyId=${company._id}`
     },
     {
       id: 'whatsapp',
@@ -170,7 +170,7 @@ const IntegrationsSection = ({ company }) => {
       icon: 'fab fa-whatsapp',
       color: '#25D366',
       description: 'Automate WhatsApp Business messages.',
-      action: () => window.location.href = `https://ai-thor5.vercel.app/api/integrations/meta/login?companyId=${company._id}`
+      action: () => window.location.href = `https://ai-thor-pkmr.vercel.app/api/integrations/meta/login?companyId=${company._id}`
     },
     {
       id: 'shopify',
@@ -181,7 +181,7 @@ const IntegrationsSection = ({ company }) => {
       action: () => {
         const shop = prompt('Enter your Shopify store URL (e.g., my-store.myshopify.com):');
         if (shop) {
-          window.location.href = `https://ai-thor5.vercel.app/api/integrations/shopify/login?shop=${shop}&companyId=${company._id}`;
+          window.location.href = `https://ai-thor-pkmr.vercel.app/api/integrations/shopify/login?shop=${shop}&companyId=${company._id}`;
         }
       }
     }
@@ -215,11 +215,11 @@ const IntegrationsSection = ({ company }) => {
           </p>
           <div className="code-block" style={{ background: '#1a1a1a', padding: '15px', borderRadius: '8px', position: 'relative' }}>
             <code style={{ color: '#00ff88', fontFamily: 'monospace', wordBreak: 'break-all' }}>
-              &lt;script src="https://ai-thor5.vercel.app/api/integrations/widget/script.js?companyId={company._id}"&gt;&lt;/script&gt;
+              &lt;script src="https://ai-thor-pkmr.vercel.app/api/integrations/widget/script.js?companyId={company._id}"&gt;&lt;/script&gt;
             </code>
             <button
               style={{ position: 'absolute', top: '10px', right: '10px', background: '#333', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
-              onClick={() => navigator.clipboard.writeText(`<script src="https://ai-thor5.vercel.app/api/integrations/widget/script.js?companyId=${company._id}"></script>`)}
+              onClick={() => navigator.clipboard.writeText(`<script src="https://ai-thor-pkmr.vercel.app/api/integrations/widget/script.js?companyId=${company._id}"></script>`)}
             >
               Copy
             </button>
