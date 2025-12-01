@@ -16,7 +16,7 @@ const ChatInterface = () => {
     }
 
     try {
-      const res = await axios.get(`https://ai-thor5.vercel.app/api/public/company/${apiKey}`);
+      const res = await axios.get(`https://ai-thor-pkmr.vercel.app/api/public/company/${apiKey}`);
       if (res.data.success) {
         setCompany(res.data.company);
         localStorage.setItem("companyApiKey", apiKey);
@@ -43,7 +43,7 @@ const ChatInterface = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("https://ai-thor5.vercel.app/api/public/chat", {
+      const res = await axios.post("https://ai-thor-pkmr.vercel.app/api/public/chat", {
         companyApiKey: apiKey,
         prompt,
       });
