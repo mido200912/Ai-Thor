@@ -1,0 +1,764 @@
+/* === Dashboard.css - Enhanced Sidebar Version === */
+
+/* General Background & Base */
+.dashboard-wrapper {
+  position: relative;
+  min-height: 80vh;
+  top: 30px;
+  background: radial-gradient(circle at top left, #1a1a2e 0%, #0a0a1a 100%);
+  color: #e0e0f0;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  display: flex;
+  /* Flex container for sidebar and main content */
+  align-items: flex-start;
+  /* Align items to the top */
+}
+
+/* Enhancing background particles/blobs */
+.dashboard-wrapper::before,
+.dashboard-wrapper::after {
+  content: "";
+  position: absolute;
+  background: radial-gradient(circle, var(--glow-color, rgba(123, 92, 255, 0.15)) 0%, transparent 70%);
+  filter: blur(120px);
+  z-index: 0;
+  pointer-events: none;
+  /* Ensure blobs don't interfere with clicks */
+}
+
+.dashboard-wrapper::before {
+  top: -100px;
+  left: -100px;
+  width: 600px;
+  height: 600px;
+  --glow-color: rgba(123, 92, 255, 0.15);
+  animation: blobMove1 15s infinite alternate ease-in-out;
+}
+
+.dashboard-wrapper::after {
+  bottom: -120px;
+  right: -120px;
+  width: 700px;
+  height: 700px;
+  --glow-color: rgba(224, 105, 255, 0.15);
+  animation: blobMove2 18s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes blobMove1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(50px, 30px) scale(1.05);
+  }
+}
+
+@keyframes blobMove2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-40px, -20px) scale(1.03);
+  }
+}
+
+/* --- Sidebar Navigation --- */
+.dashboard-sidebar {
+  position: fixed;
+  /* Fixed position */
+  top: 70px;
+  left: 0;
+  width: 250px;
+  /* Default width for desktop sidebar */
+  height: 89%;
+  background: rgba(10, 10, 25, 0.95);
+  backdrop-filter: blur(25px) saturate(180%);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  /* Right border for separation */
+  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.5);
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  /* High z-index */
+  transition: transform 0.3s ease-in-out;
+  /* Smooth transition for opening/closing */
+}
+
+.sidebar-header {
+  padding: 0 25px 25px 25px;
+  /* Padding for header text */
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  background: linear-gradient(90deg, #7b5cff, #e069ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  /* Fallback for browsers not supporting text-fill-color */
+}
+
+.sidebar-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 15px;
+}
+
+.sidebar-nav-links .btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  /* Space between icon and text */
+  justify-content: flex-start;
+  font-size: 1rem;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-nav-links .btn i {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.25s ease;
+}
+
+.sidebar-nav-links .btn span {
+  font-weight: 500;
+  color: #e0e0f0;
+}
+
+.sidebar-nav-links .btn-sidebar-primary {
+  /* Active state */
+  background: linear-gradient(90deg, #7b5cff, #e069ff);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(123, 92, 255, 0.4);
+}
+
+.sidebar-nav-links .btn-sidebar-primary i {
+  color: #fff;
+  /* Active icon color */
+}
+
+.sidebar-nav-links .btn-sidebar-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-nav-links .btn:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-nav-links .btn-sidebar-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Main Content Area --- */
+.dashboard-main-content {
+  margin-left: 250px;
+  /* Offset for the sidebar */
+  width: calc(100% - 250px);
+  /* Adjust width */
+  min-height: 100vh;
+  padding-top: 40px;
+  /* Add some top padding */
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  position: relative;
+  /* For z-index context */
+  z-index: 10;
+}
+
+.dashboard-content {
+  margin: 0 auto;
+  padding: 20px 30px;
+  max-width: 1280px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* --- Hamburger Menu Toggle for Mobile --- */
+.menu-toggle {
+  display: none;
+  /* Hidden on desktop */
+  position: fixed;
+  top: 70px;
+  left: 20px;
+  width: 40px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  z-index: 1001;
+  /* Above sidebar */
+  cursor: pointer;
+  padding: 5px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 80%;
+  height: 3px;
+  background: #e0e0f0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Close button inside sidebar for mobile */
+.close-sidebar {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #e0e0f0;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  display: none;
+  /* Hidden on desktop */
+}
+
+
+/* === Text Elements (No changes needed from previous version) === */
+h2,
+h3,
+h4 {
+  color: #fff;
+  margin-bottom: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* === General Buttons (No changes needed from previous version, use btn-primary/secondary for content buttons) === */
+.btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #7b5cff, #e069ff);
+  color: #fff;
+  box-shadow: 0 5px 20px rgba(123, 92, 255, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #8d73ff, #ff89ff);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(123, 92, 255, 0.7), 0 0 40px rgba(224, 105, 255, 0.4);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.btn:active::after {
+  width: 150%;
+  height: 150%;
+  opacity: 1;
+  transition: 0s;
+}
+
+/* === Form Elements (No changes needed from previous version) === */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  color: #c9c9ff;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-input,
+textarea,
+select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: #fff;
+  padding: 12px 15px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-input:focus,
+textarea:focus,
+select:focus {
+  border-color: #a56bff;
+  box-shadow: 0 0 0 3px rgba(165, 107, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0f0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-input:focus,
+textarea:focus,
+select:focus {
+  border-color: #a56bff;
+  box-shadow: 0 0 0 3px rgba(165, 107, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0f0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  padding-right: 40px;
+}
+
+/* === Cards (No changes needed from previous version) === */
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 6px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px) saturate(150%);
+  transition: transform 0.3s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle at center, rgba(123, 92, 255, 0.05) 0%, transparent 70%);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+  z-index: -1;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* === Card Grid Layouts (No changes needed from previous version) === */
+.grid {
+  display: grid;
+  gap: 25px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Placeholder for stat items inside cards */
+.stat-item {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.stat-item h4 {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.stat-item p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+
+/* === Error Message (No changes needed from previous version) === */
+.error-message {
+  background: rgba(255, 80, 80, 0.15);
+  border: 1px solid rgba(255, 100, 100, 0.4);
+  color: #ff9090;
+  padding: 35px;
+  border-radius: 18px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(255, 80, 80, 0.2);
+}
+
+/* === Loading Spinner (No changes needed from previous version) === */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-top: 5px solid #ff80ff;
+  border-radius: 50%;
+  animation: spin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Desktop & Larger Tablets */
+@media (min-width: 992px) {
+
+  /* Ensure sidebar is always visible and main content is offset */
+  .dashboard-sidebar {
+    transform: translateX(0);
+  }
+
+  .dashboard-main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+
+  .menu-toggle,
+  .close-sidebar {
+    display: none !important;
+    /* Hide menu toggle on desktop */
+  }
+}
+
+/* Smaller Tablets & Mobile */
+@media (max-width: 991.98px) {
+  .dashboard-wrapper {
+    padding-top: 0;
+    /* No top padding needed as nav is sidebar */
+  }
+
+  /* Hide the old dashboard-nav if it still exists (should be removed from HTML) */
+  .dashboard-nav {
+    display: none !important;
+  }
+
+  /* Make main content full width by default on mobile */
+  .dashboard-main-content {
+    margin-left: 0;
+    /* Single column layout */
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+
+  .form-input,
+  textarea,
+  select {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  /* --- Styles for when sidebar is active (opened) --- */
+  /* This will require a JS class toggled on the body or wrapper */
+  body.sidebar-open .dashboard-sidebar,
+  .dashboard-wrapper.sidebar-open .dashboard-sidebar {
+    transform: translateX(0);
+    /* Slide sidebar into view */
+  }
+
+  /* Optional: Push main content to the right when sidebar is open */
+  /* body.sidebar-open .dashboard-main-content,
+  .dashboard-wrapper.sidebar-open .dashboard-main-content {
+    transform: translateX(280px);
+  } */
+}
+
+/* Utility classes for JS (if using) */
+.d-lg-none {
+  display: none !important;
+}
+
+@media (max-width: 991.98px) {
+  .d-lg-none {
+    display: block !important;
+  }
+}
+
+/* If you need to hide an element on mobile, but show on desktop */
+.d-none-on-mobile {
+  display: block;
+}
+
+@media (max-width: 991.98px) {
+  .d-none-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Example of how active sidebar link looks, and how to use FontAwesome icons */
+/* Make sure you include Font Awesome in your project:
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+/* === Company Data Section === */
+.company-data-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.company-data-form .form-group {
+  margin-bottom: 0;
+}
+
+.company-data-form .btn-primary {
+  align-self: flex-start;
+  margin-top: 10px;
+  min-width: 150px;
+}
+
+/* === Customer Requests Section === */
+.requests-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.request-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.request-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(5px);
+  border-color: rgba(123, 92, 255, 0.3);
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 10px;
+}
+
+.request-customer {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.request-product {
+  font-size: 0.9rem;
+  color: #a56bff;
+  background: rgba(165, 107, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.request-message {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.delete-btn {
+  background: rgba(255, 80, 80, 0.1);
+  color: #ff8080;
+  border: 1px solid rgba(255, 80, 80, 0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-end;
+}
+
+.delete-btn:hover {
+  background: rgba(255, 80, 80, 0.2);
+  border-color: #ff8080;
+}
+
+/* === API Key Section === */
+.api-key-wrapper {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(123, 92, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.api-key-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #a56bff;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  outline: none;
+  letter-spacing: 1px;
+}
+
+.copy-btn-icon {
+  background: #7b5cff;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn-icon:hover {
+  background: #9d85ff;
+  transform: scale(1.05);
+}
+
+/* Responsive Adjustments for new sections */
+@media (max-width: 768px) {
+  .api-key-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .api-key-input {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .copy-btn-icon {
+    width: 100%;
+  }
+
+  .request-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
