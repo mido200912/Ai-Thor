@@ -44,7 +44,7 @@ const CompanySetup = () => {
       if (company.apiKey) {
         setApiKey(company.apiKey);
         const backendUrl =
-          import.meta.env?.VITE_API_URL || "https://ai-thor5.vercel.app/api";
+          import.meta.env?.VITE_API_URL || "https://ai-thor-pkmr.vercel.app/api";
         setApiUrl(`${backendUrl}/company/use-model`);
       } else {
         setError("API Key not found for this company");
