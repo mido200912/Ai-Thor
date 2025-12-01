@@ -111,11 +111,11 @@ const Integrations = () => {
                         </p>
                         <div className="code-block" style={{ background: '#1a1a1a', padding: '15px', borderRadius: '8px', position: 'relative' }}>
                             <code style={{ color: '#00ff88', fontFamily: 'monospace', wordBreak: 'break-all' }}>
-                                &lt;script src="https://ai-thor5.vercel.app/api/integrations/widget/script.js?companyId=YOUR_COMPANY_ID"&gt;&lt;/script&gt;
+                                &lt;script src="https://ai-thor-pkmr.vercel.app/api/integrations/widget/script.js?companyId=YOUR_COMPANY_ID"&gt;&lt;/script&gt;
                             </code>
                             <button
                                 style={{ position: 'absolute', top: '10px', right: '10px', background: '#333', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
-                                onClick={() => navigator.clipboard.writeText('<script src="https://ai-thor5.vercel.app/api/integrations/widget/script.js?companyId=YOUR_COMPANY_ID"></script>')}
+                                onClick={() => navigator.clipboard.writeText('<script src="https://ai-thor-pkmr.vercel.app/api/integrations/widget/script.js?companyId=YOUR_COMPANY_ID"></script>')}
                             >
                                 Copy
                             </button>
