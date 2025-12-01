@@ -11,7 +11,7 @@ export default function CompanyDashboard() {
   const [prompt, setPrompt] = useState("Write an attractive description for my company");
 
   const token = localStorage.getItem("token");
-  const API_URL = (process.env.REACT_APP_API_URL || "https://ai-thor5.vercel.app/api") + "/company";
+  const API_URL = (process.env.REACT_APP_API_URL || "https://ai-thor-pkmr.vercel.app/api") + "/company";
 
   useEffect(() => {
     fetchCompany();
@@ -39,7 +39,7 @@ export default function CompanyDashboard() {
   const handleTestAI = async () => {
     if (!company?.apiKey) return alert("API Key not found");
     try {
-      const res = await axios.post("https://ai-thor5.vercel.app/api/company/use-model", {
+      const res = await axios.post("https://ai-thor-pkmr.vercel.app/api/company/use-model", {
         apiKey: company.apiKey,
         prompt
       }, {
@@ -151,7 +151,7 @@ export default function CompanyDashboard() {
           <h3 className="card-header">How to Use the API</h3>
           <div className="code-block">
             <pre>
-              {`POST https://ai-thor5.vercel.app/api/public/chat
+              {`POST https://ai-thor-pkmr.vercel.app/api/public/chat
 Content-Type: application/json
 
 {
